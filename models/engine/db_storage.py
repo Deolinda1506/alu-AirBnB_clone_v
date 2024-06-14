@@ -71,6 +71,8 @@ class DBStorage:
         Session = scoped_session(sess_factory)
         self.__session = Session
 
-    def close(self):
-        """call remove() method on the private session attribute"""
-        self.__session.remove()
+   def close(self):
+    """Close the current session and recreate a new one"""
+    self.__session.remove()
+    self.reload()  # Recreate a new session
+
